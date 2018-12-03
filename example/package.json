@@ -1,0 +1,43 @@
+{
+  "name": "react-preloader-example",
+  "version": "0.0.1",
+  "description": "React preloader example",
+  "keywords": [
+    "react",
+    "react-component",
+    "preloader",
+    "react-preloader",
+    "fetch",
+    "react-preloader-component"
+  ],
+  "scripts": {
+    "dev": "webpack-dev-server --mode development",
+    "build:examples": "rm -rf ./examples/build && webpack --mode production",
+    "publish:examples": "npm run build:examples && gh-pages -d ./build"
+  },
+  "author": "Maksim Markelov <mapkeji26@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.4",
+    "css-loader": "^1.0.1",
+    "gh-pages": "^2.0.1",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.1.0",
+    "mini-css-extract-plugin": "^0.4.4",
+    "source-map-loader": "^0.2.4",
+    "webpack": "^4.26.0",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.10"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "react-preloader",
+  "version": "0.0.1",
+  "description": "Simple React component for display preloader while fetching",
+  "keywords": [
+    "react",
+    "react-component",
+    "preloader",
+    "react-preloader",
+    "fetch",
+    "react-preloader-component"
+  ],
+  "main": "lib/prod.js",
+  "scripts": {
+    "build": "rollup -c rollup.js"
+  },
+  "author": "Maksim Markelov <mapkeji26@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": "16.x"
+  },
+  "dependencies": {
+    "react": "^16.6.3"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.20",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "prettier": "^1.15.3",
+    "prop-types": "^15.6.2",
+    "rollup": "^0.67.3",
+    "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-node-resolve": "^3.4.0",
+    "rollup-plugin-uglify": "^6.0.0"
+  }
+}
