@@ -41,6 +41,50 @@ React component for display preloader. Default -
 
 ## More details and example
 
+### Basic example
+
+API is unstable now, so I need to figure out what will be the best realization.
+
+You need to store url in state, so for example if you do fetch **onClick**:
+
+```js
+class App extends React.Component {
+  state = {
+    url: null,
+  };
+
+  setUrl = url => () => {
+      this.setState({ url });
+  };
+
+  render() {
+    const { url } = this.state;
+
+    return (
+      <div className="App">
+        <div className="sort">
+            <button
+              type="button"
+              onClick={this.setUrl('https://randomuser.me/api/?results=100')}
+              className={url ? 'active button' : 'button'}
+            >
+              Load some items
+            </button>
+        </div>
+        {url && <ShowPreloader
+          duration={500}
+          preloader={Preloader}
+          loaded={Card}
+          errored={Error}
+          url={url}
+        />}
+      </div>
+    );
+  }
+}
+```
+
+
 ```js
 import React from 'react';
 import ShowPreloader from 'react-preloader';
@@ -65,7 +109,6 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <h1>React Preloader Example</h1>
         <div className="sort">
           {SORT.map(sort => (
             <button
