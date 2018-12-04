@@ -15,7 +15,7 @@ class ShowPreloader extends React.Component {
   };
 
   static defaultProps = {
-    fetch: window.fetch,
+    fetch: typeof window !== 'undefined' ? window.fetch : () => {},
     duration: 500,
     errored: () => <span>ERROR</span>,
     preloader: () => <span>Loading...</span>,
