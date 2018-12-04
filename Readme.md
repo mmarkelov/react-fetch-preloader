@@ -47,5 +47,5 @@ You can clone this repository and check example
 
 - [ ] Add tests
 - [ ] Write clear description
-- [ ] SSR
+- [x] SSR
 
