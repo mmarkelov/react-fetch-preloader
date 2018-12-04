@@ -5,7 +5,7 @@ Library for displaying preloader when response is longer than **duration**.
 ## Motivation
 
 
-![react-preloader](https://giphy.com/gifs/ckTGwxd9JMUJG4PaGe)
+![react-preloader](https://media.giphy.com/media/ckTGwxd9JMUJG4PaGe/giphy.gif)
 
 You can see gif right above to understand idea.
 
