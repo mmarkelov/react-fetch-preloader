@@ -37,34 +37,3 @@ const withPreloader = WrappedComponent => {
 };
 
 export default withPreloader;
-
-// export const renderPreload = id => {
-//   console.log(store[id]);
-// };
-//
-// export class PreloadRenderer extends React.Component {
-//   state = {
-//     initFetch: false,
-//   };
-//
-//   preload = () => {
-//     console.log('!!!')
-//     this.setState({ initFetch: true });
-//   };
-//
-//   render() {
-//     const { initFetch } = this.state;
-//     return initFetch ? <h1>Fetchin....</h1> : null;
-//   }
-// }
-// //
-// // export function preload (id, url, ...showPreloaderOptions) {
-// //   console.log(preload())
-// //   // PreloadRenderer.preload();
-// //   // <ShowPreloader url={url} {...showPreloaderOptions} />;
-// // };
-//
-// export const preload = id => () => {
-//   console.log('!!!!', id)
-//   // PreloadRenderer.prototype.preload();
-// }
