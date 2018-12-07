@@ -41,53 +41,17 @@ React component for display preloader. Default -
 
 ## More details and example
 
-### Basic example
+### Basic examples
 
 API is unstable now, so I need to figure out what will be the best realization.
 
-You need to store url in state, so for example if you do fetch **onClick**:
+#### Multiple fetches fires **onClick**
 
-```js
-class App extends React.Component {
-  state = {
-    url: null,
-  };
-
-  setUrl = url => () => {
-      this.setState({ url });
-  };
-
-  render() {
-    const { url } = this.state;
-
-    return (
-      <div className="App">
-        <div className="sort">
-            <button
-              type="button"
-              onClick={this.setUrl('https://randomuser.me/api/?results=100')}
-              className={url ? 'active button' : 'button'}
-            >
-              Load some items
-            </button>
-        </div>
-        {url && <ShowPreloader
-          duration={500}
-          preloader={Preloader}
-          loaded={Card}
-          errored={Error}
-          url={url}
-        />}
-      </div>
-    );
-  }
-}
-```
-
+You can use **ShowPreloader** component for this purpose
 
 ```js
 import React from 'react';
-import ShowPreloader from 'react-preloader';
+import { ShowPreloader } from 'react-preloader';
 
 const URL = 'https://randomuser.me/api/?results=';
 
@@ -131,6 +95,68 @@ class App extends React.Component {
     );
   }
 }
+```
+
+#### Fetches with **HOC**
+
+You can use HOC component to fetch data in different places of your App
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { withPreloader } from 'react-preloader';
+
+import Preloader from './Preloader';
+import Card from './Card';
+
+import './styles.css';
+
+const Error = data => {
+  console.log(data);
+  return <h1>Oops :( Error</h1>;
+};
+
+class App extends React.Component {
+  preload = (id, url) => () => {
+    this.props.preload(id, url, {
+      duration: 200,
+      preloader: Preloader,
+      loaded: Card,
+      errored: Error,
+    });
+  };
+
+  render() {
+    const { renderPreloader } = this.props;
+    return (
+      <div className="App">
+        <div className="sort">
+          <button
+            type="button"
+            onClick={this.preload(1, 'https://randomuser.me/api/?results=20')}
+          >
+            Load 100 items
+          </button>
+          <button
+            type="button"
+            onClick={this.preload(2, 'https://randomuser.me/api/?results=10')}
+          >
+            Load 10 items
+          </button>
+        </div>
+        <div>Some content here</div>
+        {renderPreloader(1)}
+        <div>And here...</div>
+        {renderPreloader(2)}
+      </div>
+    );
+  }
+}
+
+const WrappedApp = withPreloader(App);
+
+const rootElement = document.getElementById('root');
+ReactDOM.render(<WrappedApp />, rootElement);
 ```
 
 You can clone this repository and check example
