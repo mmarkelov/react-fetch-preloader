@@ -30,7 +30,13 @@ class ShowPreloader extends React.Component {
   };
 
   componentDidMount() {
-    const { url } = this.props;
+    const { url, loaded } = this.props;
+    if (!url) {
+      throw new Error('url param is required!');
+    }
+    if (!loaded) {
+      throw new Error('loaded param is required!');
+    }
     this.makeResponse(url);
     this.intervalId = setInterval(this.checkResponse, INTERVAL);
   }
