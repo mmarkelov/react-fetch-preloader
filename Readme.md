@@ -1,4 +1,4 @@
-# react-preloader
+# react-fetch-preloader
 
 Library for displaying preloader when response is longer than **duration**.
 
@@ -12,8 +12,8 @@ You can see gif right above to understand idea.
 ## Install
 
 ```shell
-npm install --save react-preloader
-yarn add react-preloader
+npm install --save react-fetch-preloader
+yarn add react-fetch-preloader
 ```
 
 ## Components
@@ -74,7 +74,7 @@ You can use **ShowPreloader** component for this purpose
 
 ```js
 import React from 'react';
-import { ShowPreloader } from 'react-preloader';
+import { ShowPreloader } from 'react-fetch-preloader';
 
 const URL = 'https://randomuser.me/api/?results=';
 
@@ -127,7 +127,7 @@ You can use HOC component to fetch data in different places of your App
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { withPreloader } from 'react-preloader';
+import { withPreloader } from 'react-fetch-preloader';
 
 import Preloader from './Preloader';
 import Card from './Card';
