@@ -4,21 +4,30 @@ import ShowPreloader from './ShowPreloader';
 const withPreloader = WrappedComponent => {
   class HOC extends React.Component {
     state = {
-      preloaded: {},
-      showPreloaderOptions: null,
+      showPreloaderOptions: this.props.preloadOptions,
     };
 
     preload = (id, url, showPreloaderOptions) => {
-      const { preloaded } = this.state;
-      preloaded[id] = { url };
-      this.setState({ preloaded, showPreloaderOptions });
+      if (!id) {
+        throw new Error('Id param is required!');
+      }
+      if (!url) {
+        throw new Error('Url param is required!');
+      }
+      this.setState(prevState => ({
+        [id]: { url },
+        showPreloaderOptions: {
+          ...prevState.showPreloaderOptions,
+          ...showPreloaderOptions,
+        },
+      }));
     };
 
     renderPreloader = id => {
-      const { preloaded, showPreloaderOptions } = this.state;
+      const { showPreloaderOptions } = this.state;
       return (
-        preloaded[id] && (
-          <ShowPreloader url={preloaded[id].url} {...showPreloaderOptions} />
+        this.state[id] && (
+          <ShowPreloader url={this.state[id].url} {...showPreloaderOptions} />
         )
       );
     };
