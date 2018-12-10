@@ -1,5 +1,5 @@
 {
-  "name": "react-preloader",
+  "name": "react-fetch-preloader",
   "version": "0.0.1",
   "description": "Simple React component for display preloader while fetching",
   "keywords": [
@@ -9,6 +9,10 @@
     "react-preloader",
     "fetch",
     "react-preloader-component"
+  ],
+  "files": [
+    "lib",
+    "README.md"
   ],
   "main": "lib/prod.js",
   "scripts": {
