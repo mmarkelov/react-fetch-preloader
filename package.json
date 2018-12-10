@@ -17,6 +17,10 @@
   },
   "author": "Maksim Markelov <mapkeji26@gmail.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mmarkelov/react-preloader"
+  },
   "peerDependencies": {
     "react": "16.x"
   },
