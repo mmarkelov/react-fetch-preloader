@@ -9,6 +9,13 @@ Library for displaying preloader when response is longer than **duration**.
 
 You can see gif right above to understand idea.
 
+## Install
+
+```shell
+npm install --save react-preloader
+yarn add react-preloader
+```
+
 ## Components
 
 ### ShowPreloader
