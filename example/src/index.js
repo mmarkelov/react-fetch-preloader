@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ShowPreloader from 'react-preloader';
+import { ShowPreloader } from 'react-preloader';
 
 import Preloader from './Preloader';
 import Card from './Card';
