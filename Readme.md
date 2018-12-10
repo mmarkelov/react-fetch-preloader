@@ -9,35 +9,51 @@ Library for displaying preloader when response is longer than **duration**.
 
 You can see gif right above to understand idea.
 
-## Properties
+## Components
 
-### Required
+### ShowPreloader
 
-#### url
+#### Properties
+
+##### Required
+
+###### url
 Url of response - string
 
-#### loaded
+###### loaded
 React component, when response is successful render this component
 
-### Not required
+##### Not required
 
-#### fetch
+###### fetch
 Function to fetch data. Default - window.fetch
 
-#### duration
+###### duration
 Number - if response is longer this value - show preloader(in ms). Default - 500
 
-#### errored
+###### errored
 React component, when response is failed render this component. Default -
 ```js
 () => <span>ERROR</span>
 ```
 
-#### preloader
+###### preloader
 React component for display preloader. Default -
 ```js
 () => <span>Loading...</span>
 ```
+
+### withPreloader HOC component
+
+**withPreloader** provides two extra functions:
+
+#### preload
+Takes two specified params: **id** and **url**
+
+#### renderPreloader
+Takes one specified param: **id**
+
+You can check example of using HOC in example section
 
 ## More details and example
 
@@ -135,7 +151,7 @@ class App extends React.Component {
             type="button"
             onClick={this.preload(1, 'https://randomuser.me/api/?results=20')}
           >
-            Load 100 items
+            Load 20 items
           </button>
           <button
             type="button"
@@ -169,8 +185,8 @@ yarn && yarn run dev
 
 ## TODO
 
-- [ ] Add tests
-- [ ] Write clear description
+- [ ] Add more tests
+- [ ] Write clearer description
 - [ ] Write more examples
 - [x] SSR
 
