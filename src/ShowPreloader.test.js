@@ -5,8 +5,23 @@ import ShowPreloader from './ShowPreloader';
 const Loaded = () => <div>Loaded</div>;
 const URL = 'https://randomuser.me/api/?results=10';
 
-const fetch = jest.fn().mockReturnValue(Promise.resolve());
-const rejectedFetch = jest.fn().mockReturnValue(Promise.reject('Error'));
+const fetch = jest.fn().mockImplementation(() =>
+  Promise.resolve({
+    ok: true,
+    json: () => ({
+      data: 'Some data',
+    }),
+  }),
+);
+
+const rejectedFetch = jest.fn().mockImplementation(() =>
+  Promise.reject({
+    error: true,
+    json: () => ({
+      data: 'Error',
+    }),
+  }),
+);
 
 describe('ShowPreloader', () => {
   it('should throw Error without url prop', () => {
@@ -23,6 +38,17 @@ describe('ShowPreloader', () => {
     } catch (e) {
       expect(e.message).toEqual('loaded param is required!');
     }
+  });
+
+  it('should render loaded component if responsed finished', async () => {
+    const component = shallow(
+      <ShowPreloader url={URL} loaded={Loaded} fetch={fetch} />,
+    );
+    await component.instance().makeResponse();
+    process.nextTick(() => {
+      component.update();
+      expect(component.html()).toEqual('<div>Loaded</div>');
+    });
   });
 
   it('should render error component if response failed', async () => {
