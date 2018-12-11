@@ -3,6 +3,7 @@ import { shallow } from 'enzyme';
 import ShowPreloader from './ShowPreloader';
 
 const Loaded = () => <div>Loaded</div>;
+const Error = () => <div>Error</div>;
 const URL = 'https://randomuser.me/api/?results=10';
 
 const fetch = jest.fn().mockImplementation(() =>
@@ -40,34 +41,43 @@ describe('ShowPreloader', () => {
     }
   });
 
+  it('makeResponse should be called when url was changed', () => {
+    let props = { url: 'prev_url', loaded: Loaded, fetch };
+    const component = shallow(<ShowPreloader {...props} />);
+    const makeResponse = jest.spyOn(component.instance(), 'makeResponse');
+    component.setProps({ ...props, url: 'new_url' });
+    expect(makeResponse).toHaveBeenCalledWith('new_url');
+  });
+
   it('should render preloader component while fetching', async () => {
     const component = shallow(
-      <ShowPreloader url={URL} loaded={Loaded} fetch={fetch} duration={0}/>,
+      <ShowPreloader url={URL} loaded={Loaded} fetch={fetch} duration={0} />,
     );
 
     component.instance().checkResponse();
-    expect(component.html()).toEqual('<span>Loading...</span>')
+    expect(component.html()).toEqual('<span>Loading...</span>');
   });
 
   it('should render loaded component if responsed finished', async () => {
-    const component = shallow(
+    const component = await shallow(
       <ShowPreloader url={URL} loaded={Loaded} fetch={fetch} />,
     );
     await component.instance().makeResponse();
-    process.nextTick(() => {
-      component.update();
-      expect(component.html()).toEqual('<div>Loaded</div>');
-    });
+    expect(component.html()).toBe('<div>Loaded</div>');
   });
 
   it('should render error component if response failed', async () => {
-    const component = shallow(
-      <ShowPreloader url={URL} loaded={Loaded} fetch={rejectedFetch} />,
+    const component = await shallow(
+      <ShowPreloader
+        url={URL}
+        loaded={Loaded}
+        fetch={rejectedFetch}
+        errored={Error}
+      />,
     );
     await component.instance().makeResponse();
     process.nextTick(() => {
-      component.update();
-      expect(component.html()).toBe('<span>ERROR</span>');
+      expect(component.html()).toBe('<div>Error</div>');
     });
   });
 
