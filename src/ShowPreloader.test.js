@@ -40,6 +40,15 @@ describe('ShowPreloader', () => {
     }
   });
 
+  it('should render preloader component while fetching', async () => {
+    const component = shallow(
+      <ShowPreloader url={URL} loaded={Loaded} fetch={fetch} duration={0}/>,
+    );
+
+    component.instance().checkResponse();
+    expect(component.html()).toEqual('<span>Loading...</span>')
+  });
+
   it('should render loaded component if responsed finished', async () => {
     const component = shallow(
       <ShowPreloader url={URL} loaded={Loaded} fetch={fetch} />,
