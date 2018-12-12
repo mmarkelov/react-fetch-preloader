@@ -192,7 +192,7 @@ yarn && yarn run dev
 
 ## TODO
 
-- [ ] Add tests for HOC
+- [ ] Clearify tests
 - [ ] Write clearer description
 - [ ] Write more examples
 - [x] SSR
