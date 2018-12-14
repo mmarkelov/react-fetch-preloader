@@ -56,13 +56,12 @@ describe('withPreloader HOC', () => {
   });
 
   it('renderPreloader function should render ShowPreloader component', () => {
-    const component = shallow(<WrappedApp />);
+    const component = shallow(<WrappedApp preloadOptions={{loaded: Loaded}} />);
     component.setState({
       test: { url: 'test_url' },
-      showPreloaderOptions: { url: URL, loaded: Loaded },
     });
     expect(component.instance().renderPreloader('test')).toEqual(
-      <ShowPreloader loaded={Loaded} url={URL} />,
+      <ShowPreloader loaded={Loaded} url='test_url' />,
     );
   });
 });
