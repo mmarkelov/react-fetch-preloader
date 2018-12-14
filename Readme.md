@@ -41,7 +41,7 @@ Number - if response is longer this value - show preloader(in ms). Default - 500
 ###### errored
 React component, when response is failed render this component. Default -
 ```js
-() => <span>ERROR</span>
+() => null
 ```
 
 ###### preloader
@@ -141,12 +141,7 @@ const Error = data => {
 
 class App extends React.Component {
   preload = (id, url) => () => {
-    this.props.preload(id, url, {
-      duration: 200,
-      preloader: Preloader,
-      loaded: Card,
-      errored: Error,
-    });
+    this.props.preload(id, url);
   };
 
   render() {
@@ -168,7 +163,9 @@ class App extends React.Component {
           </button>
         </div>
         <div>Some content here</div>
-        {renderPreloader(1)}
+        {renderPreloader(1, {
+          duration: 0,
+        })}
         <div>And here...</div>
         {renderPreloader(2)}
       </div>
@@ -179,7 +176,17 @@ class App extends React.Component {
 const WrappedApp = withPreloader(App);
 
 const rootElement = document.getElementById('root');
-ReactDOM.render(<WrappedApp />, rootElement);
+ReactDOM.render(
+  <WrappedApp
+    preloadOptions={{
+      duration: 1000,
+      preloader: Preloader,
+      loaded: Card,
+      errored: Error,
+    }}
+  />,
+  rootElement,
+);
 ```
 
 You can clone this repository and check example
