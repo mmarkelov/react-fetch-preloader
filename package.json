@@ -11,12 +11,14 @@
     "react-preloader-component"
   ],
   "files": [
-    "lib",
+    "dist",
     "README.md"
   ],
   "main": "lib/prod.js",
   "scripts": {
-    "build": "rollup -c rollup.js",
+    "clear": "rm -rf dist",
+    "build": "npm run clear && NODE_ENV=development rollup -c && NODE_ENV=production rollup -c",
+    "eslint": "eslint --fix --ext .js,.jsx ./src",
     "test": "jest"
   },
   "author": "Maksim Markelov <mapkeji26@gmail.com>",
@@ -61,6 +63,7 @@
     "rollup-plugin-babel": "^4.1.0",
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^4.0.0",
-    "rollup-plugin-uglify": "^6.0.0"
+    "rollup-plugin-replace": "^2.1.0",
+    "rollup-plugin-terser": "^3.0.0"
   }
 }
