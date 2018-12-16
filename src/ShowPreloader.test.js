@@ -1,3 +1,5 @@
+/* eslint-env jest */
+
 import React from 'react';
 import { shallow } from 'enzyme';
 import ShowPreloader from './ShowPreloader';
@@ -42,7 +44,7 @@ describe('ShowPreloader', () => {
   });
 
   it('makeResponse should be called when url was changed', () => {
-    let props = { url: 'prev_url', loaded: Loaded, fetch };
+    const props = { url: 'prev_url', loaded: Loaded, fetch };
     const component = shallow(<ShowPreloader {...props} />);
     const makeResponse = jest.spyOn(component.instance(), 'makeResponse');
     component.setProps({ ...props, url: 'new_url' });
