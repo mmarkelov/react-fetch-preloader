@@ -6,3 +6,8 @@
 .active {
   background-color: #ddffcc;
 }
+
+.result {
+  max-height: 330px;
+  overflow: scroll;
+}

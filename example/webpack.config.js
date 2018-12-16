@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const examples = path.resolve(process.cwd());
 
-const reactPreloader = path.resolve('../src');
+const reactFetchPreloader = path.resolve('../src');
 
 const devServer = process.argv[1].indexOf('webpack-dev-server') !== -1;
 
@@ -27,7 +27,7 @@ module.exports = {
 
   resolve: {
     alias: {
-      'react-preloader': reactPreloader,
+      'react-fetch-preloader': reactFetchPreloader,
     },
   },
 
